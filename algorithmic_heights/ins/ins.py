@@ -1,6 +1,7 @@
 f = open('rosalind_ins.txt')
 n = int(f.readline())
 a = [int(i) for i in f.readline().split()]
+f.close()
 
 
 def insertion_sort(a):
