@@ -1,7 +1,7 @@
 from bioinf_utils import utils
 
 
-rna_codon_table = utils.read_rna_codon_table()
+rna_codon_table = utils.read_codon_table('rna')
 possible_codon_cnt = {}
 for codon, amino_acid in rna_codon_table.items():
     if amino_acid in possible_codon_cnt.keys():
