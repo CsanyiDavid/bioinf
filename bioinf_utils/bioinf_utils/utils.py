@@ -25,7 +25,6 @@ def read_fasta_format_dnas_from_file(filename='input.txt'):
     lines = f.readlines()
     f.close()
     dnas = {}
-
     rosalind_id = None
     for line in lines:
         if line.startswith('>'):
@@ -56,3 +55,26 @@ def reverse_complement(dna):
     return complement_dna
 
 
+def stop_codons(dna_or_rna):
+    codon_table = read_codon_table(dna_or_rna)
+    stop_codons = []
+    for codon in codon_table.keys():
+        if codon_table[codon] == 'Stop':
+            stop_codons.append(codon)
+    return stop_codons
+
+
+def translate_into_protein(s, dna_or_rna, stop=True):
+    codon_table = read_codon_table(dna_or_rna)
+    i = 0
+    protein = ''
+    while i < len(s) - 2:
+        codon = s[i:i + 3]
+        amino_acid = codon_table[codon]
+        if amino_acid == 'Stop' and stop:
+            break
+        protein += amino_acid
+        i += 3
+    if protein.endswith('Stop'):
+        protein = protein[:-4]
+    return protein
