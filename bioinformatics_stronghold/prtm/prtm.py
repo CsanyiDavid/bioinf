@@ -1,12 +1,6 @@
-mass_table_file = open("mass_table.txt")
+from bioinf_utils import utils
 
-mass_table_lines = mass_table_file.readlines()
-mass_table_file.close()
-mass_table = {}
-for line in mass_table_lines:
-    letter, mass = line.split()
-    mass = float(mass)
-    mass_table[letter] = mass
+mass_table = utils.read_monoisotopic_mass_table()
 
 s = input()
 weight = 0.0

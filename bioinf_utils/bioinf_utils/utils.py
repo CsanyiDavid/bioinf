@@ -78,3 +78,19 @@ def translate_into_protein(s, dna_or_rna, stop=True):
     if protein.endswith('Stop'):
         protein = protein[:-4]
     return protein
+
+
+def read_monoisotopic_mass_table():
+    directory = os.path.dirname(os.path.realpath(__file__))
+    filename = "monoisotopic_mass_table.txt"
+    mass_table_path = os.path.join(directory, filename)
+    mass_table_file = open(mass_table_path)
+    mass_table_lines = mass_table_file.readlines()
+    mass_table_file.close()
+    mass_table = {}
+    for line in mass_table_lines:
+        letter, mass = line.split()
+        mass = float(mass)
+        mass_table[letter] = mass
+    return mass_table
+
