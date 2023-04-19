@@ -94,3 +94,16 @@ def read_monoisotopic_mass_table():
         mass_table[letter] = mass
     return mass_table
 
+
+def get_nearest_amino_acid(mass):
+    mass_table = read_monoisotopic_mass_table()
+    nearest_amino_acid = None
+    min_dist = 1000000
+    for amino_acid in mass_table.keys():
+        dist = abs(mass_table[amino_acid] - mass)
+        #  print(amino_acid, dist)
+        if dist < min_dist:
+            min_dist = dist
+            nearest_amino_acid = amino_acid
+    return nearest_amino_acid, min_dist
+
